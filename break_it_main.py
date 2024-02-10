@@ -33,7 +33,7 @@ class BreakIt:
 
     Methods:
         - is_x_cond_met(obj): Check if the x-condition is met for a given object.
-        - paddle_x_spin(): Adjust ball's x-move based on paddle hit for spin effect.
+        - determine_paddle_x_spin(): Adjust ball's x-move based on paddle hit for spin effect.
         - is_y_cond_met(obj): Check if the y-condition is met for a given object.
         - are_x_y_cond_met(obj): Check if both x and y conditions are met for a given object.
         - key_listeners(): Creates key listeners for movement/pause/quit/restart methods.
@@ -69,21 +69,7 @@ class BreakIt:
         self.x_spin = 1.25
         self.run_game()
 
-    def is_x_cond_met(self, obj):
-        """Check if the x-condition is met for a given object.
-
-        Args:
-            obj (turtle.Turtle): The object to check.
-
-        Returns:
-            bool: True if the x-condition is met, False otherwise.
-        """
-        obj_x = obj.xcor()
-        obj_w = obj.shapesize()[1] * 20
-        x_condition = obj_x - obj_w <= self.ball.xcor() - 10 <= obj_x + obj_w / 2
-        return x_condition
-
-    def paddle_x_spin(self):
+    def determine_paddle_x_spin(self):
         """Adjust ball's x-move based on paddle hit for spin effect."""
 
         # Ensure x_move is reset to original_speed, continuing direction:
@@ -93,22 +79,38 @@ class BreakIt:
             original_speed_cont_dir = self.ball.original_speed
         # Get ball's x-coordinate:
         ball_x = self.ball.xcor()
-        # Define paddle's left side for left spin:
+        # Define paddle's left quarter for left spin:
         paddle_x_left = self.paddle.xcor() - 30
-        # Define paddle's right side for right spin:
+        # Define paddle's right quarter for right spin:
         paddle_x_right = self.paddle.xcor() + 30
-        # Ball continues in same direction if it hits middle of paddle:
+        # Ball continues in same direction if it hits middle half of paddle:
         if paddle_x_left < ball_x < paddle_x_right:
             self.ball.x_move = original_speed_cont_dir
-        # Ball always goes left if it hits left side of paddle:
+        # Ball always goes left if it hits left quarter of paddle:
         elif ball_x <= paddle_x_left:
             self.ball.x_move = -self.ball.original_speed * self.x_spin
-        # Ball always goes right if it hits right side of paddle:
+        # Ball always goes right if it hits right quarter of paddle:
         elif ball_x >= paddle_x_right:
             self.ball.x_move = self.ball.original_speed * self.x_spin
 
+    def is_x_cond_met(self, obj):
+        """Check if the x-condition is met for a given object.
+        Helps determine if ball hits paddle and bricks.
+
+        Args:
+            obj (turtle.Turtle): The object to check.
+
+        Returns:
+            bool: True if the x-condition is met, False otherwise.
+        """
+        obj_x = obj.xcor()
+        obj_w = obj.shapesize()[1] * 20
+        x_condition = obj_x - obj_w / 2 <= self.ball.xcor() - 10 <= obj_x + obj_w / 2
+        return x_condition
+
     def is_y_cond_met(self, obj):
         """Check if the y-condition is met for a given object.
+        Helps determine if ball hits paddle and bricks.
 
         Args:
             obj (turtle.Turtle): The object to check.
@@ -117,11 +119,16 @@ class BreakIt:
             bool: True if the y-condition is met, False otherwise.
         """
         obj_y = obj.ycor()
-        y_condition = obj_y - 10 <= self.ball.ycor() - 10 <= obj_y + 10
+        # Dissallow hits from bottom of paddle, in rare instances:
+        if obj is self.paddle:
+            y_condition = obj_y - 10 <= self.ball.ycor() <= obj_y + 20
+        else:
+            y_condition = obj_y - 20 <= self.ball.ycor() <= obj_y + 20
         return y_condition
 
     def are_x_y_cond_met(self, obj):
         """Check if both x and y conditions are met for a given object.
+        Helps determine if ball hits paddle and bricks.
 
         Args:
             obj (turtle.Turtle): The object to check.
@@ -135,7 +142,7 @@ class BreakIt:
     def paddle_collision(self):
         """Handle collisions with the paddle. Resets y_move to original_speed."""
         if self.are_x_y_cond_met(self.paddle) and not self.recent_paddle_collision:
-            self.paddle_x_spin()
+            self.determine_paddle_x_spin()
             self.ball.y_move = self.ball.original_speed
             self.recent_paddle_collision = True
             self.screen.ontimer(self.reset_recent_paddle_collision_flag, 1000)
@@ -235,4 +242,4 @@ class BreakIt:
 
 if __name__ == "__main__":
     help(BreakIt)
-    break_it = BreakIt()
+    break_it = BreakIt(speed=4)

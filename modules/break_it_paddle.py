@@ -49,16 +49,18 @@ class BreakItPaddle(Turtle):
     def move_paddle_left(self):
         """
         Move the paddle to the left if within the left boundary.
+        Allows right edge of paddle to stick out slightly for x-spin from that side.
         """
-        if self.xcor() > -485:
+        if self.xcor() > -600:
             new_x = self.xcor() - 30
             self.goto(new_x, self.ycor())
 
     def move_paddle_right(self):
         """
         Move the paddle to the right if within the right boundary.
+        Allows left edge of paddle to stick out slightly for x-spin from that side.
         """
-        if self.xcor() < 485:
+        if self.xcor() < 600:
             new_x = self.xcor() + 30
             self.goto(new_x, self.ycor())
 
