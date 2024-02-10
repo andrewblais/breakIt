@@ -1,4 +1,7 @@
+from random import choice, randint
 from turtle import Turtle
+
+from break_it_config import speed_multiples
 
 
 class BreakItBall(Turtle):
@@ -35,10 +38,10 @@ class BreakItBall(Turtle):
         self.color("white")
         self.shape("circle")
         self.penup()
-        self.goto(-520, 130)
+        self.goto(choice([-350, 350]), 120)
         self.original_speed = speed
-        self.x_move = self.original_speed
-        self.y_move = -self.original_speed
+        self.x_move = self.original_speed * choice(speed_multiples)
+        self.y_move = -self.original_speed * abs(choice(speed_multiples))
 
     def move(self):
         """
@@ -56,6 +59,6 @@ class BreakItBall(Turtle):
         """
         Reset the ball to its initial position and speed.
         """
-        self.goto(-520, 130)
-        self.x_move = self.original_speed
-        self.y_move = -self.original_speed
+        self.goto(choice([-350, 350]), 120)
+        self.x_move = self.original_speed * choice(speed_multiples)
+        self.y_move = -self.original_speed * abs(choice(speed_multiples))

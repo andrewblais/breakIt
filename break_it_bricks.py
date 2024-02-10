@@ -1,5 +1,5 @@
 from turtle import Turtle
-from break_it_config import color_hex_list
+from break_it_config import brick_color_hex_list
 
 
 class BreakItBricks:
@@ -33,7 +33,7 @@ class BreakItBricks:
                 height, width, other = dash.turtlesize()
                 new_size = height * 1.0, width * 4.35, other
                 dash.turtlesize(*new_size)
-                dash.color(color_hex_list[color_ind])
+                dash.color(brick_color_hex_list[color_ind])
                 dash.speed('fastest')
                 dash.penup()
                 dash.goto(j)
