@@ -1,7 +1,7 @@
-from random import choice, randint
+from random import choice
 from turtle import Turtle
 
-from break_it_config import speed_multiples
+from static.break_it_config import speed_multiples
 
 
 class BreakItBall(Turtle):
@@ -62,3 +62,7 @@ class BreakItBall(Turtle):
         self.goto(choice([-350, 350]), 120)
         self.x_move = self.original_speed * choice(speed_multiples)
         self.y_move = -self.original_speed * abs(choice(speed_multiples))
+
+
+if __name__ == "__main__":
+    help(BreakItBall)

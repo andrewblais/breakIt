@@ -1,11 +1,11 @@
 from turtle import Turtle
-from break_it_config import brick_color_hex_list
+from static.break_it_config import brick_color_hex_list
 
 
 class BreakItBricks:
     def __init__(self):
         """
-        Initializes the BreakItBricks class.
+        Initializes BreakItBricks.
 
         Attributes:
         - all_bricks: A list to store all the brick Turtle objects.
@@ -39,3 +39,7 @@ class BreakItBricks:
                 dash.goto(j)
                 self.all_bricks.append(dash)
             color_ind += 1
+
+
+if __name__ == "__main__":
+    help(BreakItBricks)

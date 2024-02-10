@@ -15,17 +15,21 @@ class BreakItRestartText(Turtle):
     """
 
     def __init__(self):
-        """Initialize the BreakItRestartText."""
+        """Initialize BreakItRestartText."""
         super().__init__()
         self.color("white")
         self.space = 50
         self.write_game_over()
 
     def write_game_over(self):
-        """Display the game over text on the screen."""
+        """Display the 'GAME OVER' text on the screen."""
         self.clear()
         self.penup()
         self.hideturtle()
         self.goto(0, -100)
         space = " " * self.space
         self.write(f"(R)estart{space}(Q)uit", align="center", font=FONT)
+
+
+if __name__ == "__main__":
+    help(BreakItRestartText)

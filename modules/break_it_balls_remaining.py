@@ -15,7 +15,7 @@ class BreakItBallsRemaining(Turtle):
     """
 
     def __init__(self, balls_remaining_int: int = 5):
-        """Initialize the BreakItBallsRemaining."""
+        """Initialize BreakItBallsRemaining."""
         super().__init__()
         self.color("white")
         self.number = balls_remaining_int
@@ -45,3 +45,7 @@ class BreakItBallsRemaining(Turtle):
         self.number -= 1
         self.balls_remaining_str = self.number * "●"
         self.update_balls_remaining()
+
+
+if __name__ == "__main__":
+    help(BreakItBallsRemaining)

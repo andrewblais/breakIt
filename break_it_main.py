@@ -1,14 +1,14 @@
 import time
 
-from break_it_ball import BreakItBall
-from break_it_balls_remaining import BreakItBallsRemaining
-from break_it_bricks import BreakItBricks
-from break_it_game_over_text import BreakItGameOverText
-from break_it_config import *
-from break_it_paddle import BreakItPaddle
-from break_it_restart_text import BreakItRestartText
-from break_it_scoreboard import BreakItScoreboard
-from break_it_screen import BreakItScreen
+from modules.break_it_ball import BreakItBall
+from modules.break_it_balls_remaining import BreakItBallsRemaining
+from modules.break_it_bricks import BreakItBricks
+from modules.break_it_game_over_text import BreakItGameOverText
+from static.break_it_config import *
+from modules.break_it_paddle import BreakItPaddle
+from modules.break_it_restart_text import BreakItRestartText
+from modules.break_it_scoreboard import BreakItScoreboard
+from modules.break_it_screen import BreakItScreen
 
 
 class BreakIt:
@@ -36,6 +36,7 @@ class BreakIt:
         - paddle_x_spin(): Adjust ball's x-move based on paddle hit for spin effect.
         - is_y_cond_met(obj): Check if the y-condition is met for a given object.
         - are_x_y_cond_met(obj): Check if both x and y conditions are met for a given object.
+        - key_listeners(): Creates key listeners for movement/pause/quit/restart methods.
         - paddle_collision(): Handle collisions with the paddle. Resets y_move to original_speed.
         - brick_collision(): Handle collisions with bricks.
         - reset_recent_paddle_collision_flag(): Reset the recent paddle collision flag.
@@ -157,7 +158,7 @@ class BreakIt:
         """Start the next round after all bricks eliminated.
         Reinitiates all relevant attributes.
         Preserves score and number of balls.
-        Increases ball speed"""
+        Increases ball speed."""
         self.screen.clear()
         self.__init__(speed=self.speed + .5,
                       score=self.scoreboard.score,
@@ -176,13 +177,19 @@ class BreakIt:
     def pause_toggle(self):
         self.pause_game = not self.pause_game
 
-    def run_game(self):
-        """Run the BreakIt game loop."""
+    def key_listeners(self):
+        """Creates key listeners for movement/pause/quit/restart methods."""
         self.screen.listen()
         self.screen.onkeypress(self.paddle.move_paddle_left, 'Left')
         self.screen.onkeypress(self.paddle.move_paddle_right, 'Right')
         self.screen.onkeypress(self.pause_toggle, 'p')
         self.screen.onkeypress(self.quit_game, 'q')
+        self.screen.onkeypress(self.restart_game, 'r')
+
+    def run_game(self):
+        """Run the BreakIt game loop."""
+        # Listen for keypresses:
+        self.key_listeners()
         while self.game_on:
             if not self.pause_game:
                 # time.sleep(ball.move_speed)
@@ -198,7 +205,6 @@ class BreakIt:
                     if self.balls_remaining.number < 0:
                         self.game_over_text = BreakItGameOverText()
                         self.restart_text = BreakItRestartText()
-                        self.screen.onkeypress(self.restart_game, 'r')
                     else:
                         self.screen.ontimer(self.ball.reset_ball, 10)
             else:
@@ -228,4 +234,5 @@ class BreakIt:
 
 
 if __name__ == "__main__":
+    help(BreakIt)
     break_it = BreakIt()

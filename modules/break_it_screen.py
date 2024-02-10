@@ -1,7 +1,7 @@
 from turtle import Screen
 import time
 
-from break_it_config import screen_width, screen_height
+from static.break_it_config import screen_width, screen_height
 
 
 class BreakItScreen:
@@ -40,3 +40,7 @@ class BreakItScreen:
         self.screen.tracer(0, 0)
         time.sleep(0.01)
         return self.screen
+
+
+if __name__ == "__main__":
+    help(BreakItScreen)

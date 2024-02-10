@@ -76,3 +76,6 @@ other_colors = ['#8b0000',  # red4
 
 # Change up the ball speed every serve, chosen at random in `break_it_main.py`:
 speed_multiples = [-2, -1.75, -1.5, -1.25, -1, 1, 1.25, 1.5, 1.75, 2]
+
+if __name__ == "__main__":
+    print(__doc__)

@@ -61,3 +61,7 @@ class BreakItPaddle(Turtle):
         if self.xcor() < 485:
             new_x = self.xcor() + 30
             self.goto(new_x, self.ycor())
+
+
+if __name__ == "__main__":
+    help(BreakItPaddle)

@@ -14,7 +14,7 @@ class BreakItScoreboard(Turtle):
     """
 
     def __init__(self, score: int = 0):
-        """Initialize the BreakItScoreboard."""
+        """Initialize BreakItScoreboard."""
         super().__init__()
         self.color("white")
         self.score = score
@@ -33,3 +33,7 @@ class BreakItScoreboard(Turtle):
         self.write(f"{self.score:04d}",
                    align="center",
                    font=("Source Sans 3 Black", 32, "italic"))
+
+
+if __name__ == "__main__":
+    help(BreakItScoreboard)
