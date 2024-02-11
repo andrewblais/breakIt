@@ -31,5 +31,5 @@ class BreakItRestartText(Turtle):
         self.write(f"(R)estart{space}(Q)uit", align="center", font=FONT)
 
 
-if __name__ == "__main__":
-    help(BreakItRestartText)
+# if __name__ == "__main__":
+#     help(BreakItRestartText)

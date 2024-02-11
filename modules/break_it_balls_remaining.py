@@ -47,5 +47,5 @@ class BreakItBallsRemaining(Turtle):
         self.update_balls_remaining()
 
 
-if __name__ == "__main__":
-    help(BreakItBallsRemaining)
+# if __name__ == "__main__":
+#     help(BreakItBallsRemaining)

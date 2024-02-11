@@ -42,5 +42,5 @@ class BreakItScreen:
         return self.screen
 
 
-if __name__ == "__main__":
-    help(BreakItScreen)
+# if __name__ == "__main__":
+#     help(BreakItScreen)

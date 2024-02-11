@@ -35,5 +35,5 @@ class BreakItScoreboard(Turtle):
                    font=("Source Sans 3 Black", 32, "italic"))
 
 
-if __name__ == "__main__":
-    help(BreakItScoreboard)
+# if __name__ == "__main__":
+#     help(BreakItScoreboard)

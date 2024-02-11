@@ -64,5 +64,5 @@ class BreakItBall(Turtle):
         self.y_move = -self.original_speed * abs(choice(speed_multiples))
 
 
-if __name__ == "__main__":
-    help(BreakItBall)
+# if __name__ == "__main__":
+#     help(BreakItBall)

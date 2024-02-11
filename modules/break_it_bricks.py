@@ -41,5 +41,5 @@ class BreakItBricks:
             color_ind += 1
 
 
-if __name__ == "__main__":
-    help(BreakItBricks)
+# if __name__ == "__main__":
+#     help(BreakItBricks)

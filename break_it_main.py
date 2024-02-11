@@ -1,3 +1,4 @@
+import sys
 import time
 
 from modules.break_it_ball import BreakItBall
@@ -241,5 +242,9 @@ class BreakIt:
 
 
 if __name__ == "__main__":
-    help(BreakIt)
-    break_it = BreakIt(speed=4)
+    # help(BreakIt)
+    try:
+        break_it = BreakIt(speed=3)
+    except (Exception,) as e:
+        print(f"Bogstandard exit error: {e}")
+        sys.exit(1)

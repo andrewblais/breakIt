@@ -65,5 +65,5 @@ class BreakItPaddle(Turtle):
             self.goto(new_x, self.ycor())
 
 
-if __name__ == "__main__":
-    help(BreakItPaddle)
+# if __name__ == "__main__":
+#     help(BreakItPaddle)

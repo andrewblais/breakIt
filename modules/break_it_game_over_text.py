@@ -25,5 +25,5 @@ class BreakItGameOverText(Turtle):
         self.write(f"GAME OVER", align="center", font=FONT)
 
 
-if __name__ == "__main__":
-    help(BreakItGameOverText)
+# if __name__ == "__main__":
+#     help(BreakItGameOverText)
